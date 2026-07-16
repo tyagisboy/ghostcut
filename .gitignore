@@ -1,9 +1,8 @@
 # Large neural network models (ONNX weights)
 src/models/*.onnx
 
-# Large test outputs and benchmark comparisons
-Test images/Results/
-Test images/Other Tools Output/
+# Exclude all test images and processed outputs
+Test images/
 
 # Local database memory caches
 *.db
