@@ -1,0 +1,26 @@
+# Large neural network models (ONNX weights)
+src/models/*.onnx
+
+# Large test outputs and benchmark comparisons
+Test images/Results/
+Test images/Other Tools Output/
+
+# Local database memory caches
+*.db
+*_db.json
+benchmark_history.json
+production_telemetry.json
+
+# PyInstaller build artifacts
+build/
+dist/
+*.spec
+build_scripts/*.exe
+
+# Python compilation caches
+__pycache__/
+*.pyc
+
+# Local system files
+.DS_Store
+Thumbs.db

@@ -1,0 +1,33 @@
+{
+    "Hair": {
+        "preserve_strands": true,
+        "decontaminate": true,
+        "smoothness": 0.4,
+        "edge_gradient_scale": 1.5
+    },
+    "Fur": {
+        "preserve_fibers": true,
+        "decontaminate": true,
+        "smoothness": 0.3,
+        "edge_gradient_scale": 1.2
+    },
+    "Skin": {
+        "preserve_strands": false,
+        "decontaminate": false,
+        "smoothness": 0.8,
+        "edge_gradient_scale": 0.5
+    },
+    "Glass": {
+        "preserve_strands": false,
+        "decontaminate": false,
+        "smoothness": 0.9,
+        "edge_gradient_scale": 2.0,
+        "transparency_boost": true
+    },
+    "Fabric": {
+        "preserve_strands": false,
+        "decontaminate": true,
+        "smoothness": 0.5,
+        "edge_gradient_scale": 1.0
+    }
+}

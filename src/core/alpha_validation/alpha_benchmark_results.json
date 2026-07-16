@@ -1,0 +1,496 @@
+{
+    "Straight hair": {
+        "Legacy Guided Filter": {
+            "boundary_iou": 0.0,
+            "sad": 2038.462646484375,
+            "connectivity": 0.0,
+            "gradient_error": 61.98870849609375,
+            "halo_width": 15.90625,
+            "processing_time_ms": 15.64949999738019,
+            "peak_memory_mb": 12.5
+        },
+        "Guided Filter + ViTMatte": {
+            "boundary_iou": 0.4864359214218896,
+            "sad": 3570.588134765625,
+            "connectivity": 0.0,
+            "gradient_error": 75.84774780273438,
+            "halo_width": 27.78125,
+            "processing_time_ms": 51.403999995091,
+            "peak_memory_mb": 35.0
+        },
+        "Unified AIE": {
+            "boundary_iou": 0.9692307692307692,
+            "sad": 2574.90185546875,
+            "connectivity": 0.0,
+            "gradient_error": 44.59281539916992,
+            "halo_width": 27.78125,
+            "processing_time_ms": 174.6733000036329,
+            "peak_memory_mb": 8.5
+        },
+        "AIE + Local Repair": {
+            "boundary_iou": 0.9692307692307692,
+            "sad": 2574.90185546875,
+            "connectivity": 0.0,
+            "gradient_error": 44.59281539916992,
+            "halo_width": 27.78125,
+            "processing_time_ms": 15.833000004524365,
+            "peak_memory_mb": 8.8
+        }
+    },
+    "Curly hair": {
+        "Legacy Guided Filter": {
+            "boundary_iou": 0.0,
+            "sad": 2038.462646484375,
+            "connectivity": 0.0,
+            "gradient_error": 61.98870849609375,
+            "halo_width": 15.90625,
+            "processing_time_ms": 0.6965000065974891,
+            "peak_memory_mb": 12.5
+        },
+        "Guided Filter + ViTMatte": {
+            "boundary_iou": 0.4864359214218896,
+            "sad": 3570.588134765625,
+            "connectivity": 0.0,
+            "gradient_error": 75.84774780273438,
+            "halo_width": 27.78125,
+            "processing_time_ms": 51.457200007280335,
+            "peak_memory_mb": 35.0
+        },
+        "Unified AIE": {
+            "boundary_iou": 0.9692307692307692,
+            "sad": 2574.90185546875,
+            "connectivity": 0.0,
+            "gradient_error": 44.59281539916992,
+            "halo_width": 27.78125,
+            "processing_time_ms": 13.898599994718097,
+            "peak_memory_mb": 8.5
+        },
+        "AIE + Local Repair": {
+            "boundary_iou": 0.9692307692307692,
+            "sad": 2574.90185546875,
+            "connectivity": 0.0,
+            "gradient_error": 44.59281539916992,
+            "halo_width": 27.78125,
+            "processing_time_ms": 15.849100010702386,
+            "peak_memory_mb": 8.8
+        }
+    },
+    "Afro/coily hair": {
+        "Legacy Guided Filter": {
+            "boundary_iou": 0.0,
+            "sad": 2038.462646484375,
+            "connectivity": 0.0,
+            "gradient_error": 61.98870849609375,
+            "halo_width": 15.90625,
+            "processing_time_ms": 1.4436999917961657,
+            "peak_memory_mb": 12.5
+        },
+        "Guided Filter + ViTMatte": {
+            "boundary_iou": 0.4864359214218896,
+            "sad": 3570.588134765625,
+            "connectivity": 0.0,
+            "gradient_error": 75.84774780273438,
+            "halo_width": 27.78125,
+            "processing_time_ms": 51.44900000304915,
+            "peak_memory_mb": 35.0
+        },
+        "Unified AIE": {
+            "boundary_iou": 0.9692307692307692,
+            "sad": 2574.90185546875,
+            "connectivity": 0.0,
+            "gradient_error": 44.59281539916992,
+            "halo_width": 27.78125,
+            "processing_time_ms": 13.847800000803545,
+            "peak_memory_mb": 8.5
+        },
+        "AIE + Local Repair": {
+            "boundary_iou": 0.9692307692307692,
+            "sad": 2574.90185546875,
+            "connectivity": 0.0,
+            "gradient_error": 44.59281539916992,
+            "halo_width": 27.78125,
+            "processing_time_ms": 14.490099994465709,
+            "peak_memory_mb": 8.8
+        }
+    },
+    "Long fur": {
+        "Legacy Guided Filter": {
+            "boundary_iou": 0.0,
+            "sad": 2038.462646484375,
+            "connectivity": 0.0,
+            "gradient_error": 61.98870849609375,
+            "halo_width": 15.90625,
+            "processing_time_ms": 0.7458999898517504,
+            "peak_memory_mb": 12.5
+        },
+        "Guided Filter + ViTMatte": {
+            "boundary_iou": 0.4864359214218896,
+            "sad": 3570.588134765625,
+            "connectivity": 0.0,
+            "gradient_error": 75.84774780273438,
+            "halo_width": 27.78125,
+            "processing_time_ms": 51.42920001235325,
+            "peak_memory_mb": 35.0
+        },
+        "Unified AIE": {
+            "boundary_iou": 0.9692307692307692,
+            "sad": 2574.90185546875,
+            "connectivity": 0.0,
+            "gradient_error": 44.59281539916992,
+            "halo_width": 27.78125,
+            "processing_time_ms": 13.291899987962097,
+            "peak_memory_mb": 8.5
+        },
+        "AIE + Local Repair": {
+            "boundary_iou": 0.9692307692307692,
+            "sad": 2574.90185546875,
+            "connectivity": 0.0,
+            "gradient_error": 44.59281539916992,
+            "halo_width": 27.78125,
+            "processing_time_ms": 16.48579999851063,
+            "peak_memory_mb": 8.8
+        }
+    },
+    "Short fur": {
+        "Legacy Guided Filter": {
+            "boundary_iou": 0.0,
+            "sad": 2038.462646484375,
+            "connectivity": 0.0,
+            "gradient_error": 61.98870849609375,
+            "halo_width": 15.90625,
+            "processing_time_ms": 0.8352000004379079,
+            "peak_memory_mb": 12.5
+        },
+        "Guided Filter + ViTMatte": {
+            "boundary_iou": 0.4864359214218896,
+            "sad": 3570.588134765625,
+            "connectivity": 0.0,
+            "gradient_error": 75.84774780273438,
+            "halo_width": 27.78125,
+            "processing_time_ms": 51.46390000008978,
+            "peak_memory_mb": 35.0
+        },
+        "Unified AIE": {
+            "boundary_iou": 0.9692307692307692,
+            "sad": 2574.90185546875,
+            "connectivity": 0.0,
+            "gradient_error": 44.59281539916992,
+            "halo_width": 27.78125,
+            "processing_time_ms": 21.420699995360337,
+            "peak_memory_mb": 8.5
+        },
+        "AIE + Local Repair": {
+            "boundary_iou": 0.9692307692307692,
+            "sad": 2574.90185546875,
+            "connectivity": 0.0,
+            "gradient_error": 44.59281539916992,
+            "halo_width": 27.78125,
+            "processing_time_ms": 23.323000008123927,
+            "peak_memory_mb": 8.8
+        }
+    },
+    "Transparent glass": {
+        "Legacy Guided Filter": {
+            "boundary_iou": 0.0,
+            "sad": 2038.462646484375,
+            "connectivity": 0.0,
+            "gradient_error": 61.98870849609375,
+            "halo_width": 15.90625,
+            "processing_time_ms": 1.131800003349781,
+            "peak_memory_mb": 12.5
+        },
+        "Guided Filter + ViTMatte": {
+            "boundary_iou": 0.4864359214218896,
+            "sad": 3570.588134765625,
+            "connectivity": 0.0,
+            "gradient_error": 75.84774780273438,
+            "halo_width": 27.78125,
+            "processing_time_ms": 52.41220000316389,
+            "peak_memory_mb": 35.0
+        },
+        "Unified AIE": {
+            "boundary_iou": 0.9692307692307692,
+            "sad": 2574.90185546875,
+            "connectivity": 0.0,
+            "gradient_error": 44.59281539916992,
+            "halo_width": 27.78125,
+            "processing_time_ms": 15.587300003971905,
+            "peak_memory_mb": 8.5
+        },
+        "AIE + Local Repair": {
+            "boundary_iou": 0.9692307692307692,
+            "sad": 2574.90185546875,
+            "connectivity": 0.0,
+            "gradient_error": 44.59281539916992,
+            "halo_width": 27.78125,
+            "processing_time_ms": 14.146699998993427,
+            "peak_memory_mb": 8.8
+        }
+    },
+    "Lace": {
+        "Legacy Guided Filter": {
+            "boundary_iou": 0.0,
+            "sad": 2038.462646484375,
+            "connectivity": 0.0,
+            "gradient_error": 61.98870849609375,
+            "halo_width": 15.90625,
+            "processing_time_ms": 0.7523000094806775,
+            "peak_memory_mb": 12.5
+        },
+        "Guided Filter + ViTMatte": {
+            "boundary_iou": 0.4864359214218896,
+            "sad": 3570.588134765625,
+            "connectivity": 0.0,
+            "gradient_error": 75.84774780273438,
+            "halo_width": 27.78125,
+            "processing_time_ms": 51.44249999721069,
+            "peak_memory_mb": 35.0
+        },
+        "Unified AIE": {
+            "boundary_iou": 0.9692307692307692,
+            "sad": 2574.90185546875,
+            "connectivity": 0.0,
+            "gradient_error": 44.59281539916992,
+            "halo_width": 27.78125,
+            "processing_time_ms": 12.795100003131665,
+            "peak_memory_mb": 8.5
+        },
+        "AIE + Local Repair": {
+            "boundary_iou": 0.9692307692307692,
+            "sad": 2574.90185546875,
+            "connectivity": 0.0,
+            "gradient_error": 44.59281539916992,
+            "halo_width": 27.78125,
+            "processing_time_ms": 15.896500007831492,
+            "peak_memory_mb": 8.8
+        }
+    },
+    "Mesh": {
+        "Legacy Guided Filter": {
+            "boundary_iou": 0.0,
+            "sad": 2038.462646484375,
+            "connectivity": 0.0,
+            "gradient_error": 61.98870849609375,
+            "halo_width": 15.90625,
+            "processing_time_ms": 0.7393999985652044,
+            "peak_memory_mb": 12.5
+        },
+        "Guided Filter + ViTMatte": {
+            "boundary_iou": 0.4864359214218896,
+            "sad": 3570.588134765625,
+            "connectivity": 0.0,
+            "gradient_error": 75.84774780273438,
+            "halo_width": 27.78125,
+            "processing_time_ms": 51.464700006181374,
+            "peak_memory_mb": 35.0
+        },
+        "Unified AIE": {
+            "boundary_iou": 0.9692307692307692,
+            "sad": 2574.90185546875,
+            "connectivity": 0.0,
+            "gradient_error": 44.59281539916992,
+            "halo_width": 27.78125,
+            "processing_time_ms": 13.202999994973652,
+            "peak_memory_mb": 8.5
+        },
+        "AIE + Local Repair": {
+            "boundary_iou": 0.9692307692307692,
+            "sad": 2574.90185546875,
+            "connectivity": 0.0,
+            "gradient_error": 44.59281539916992,
+            "halo_width": 27.78125,
+            "processing_time_ms": 15.282100000651553,
+            "peak_memory_mb": 8.8
+        }
+    },
+    "Jewelry": {
+        "Legacy Guided Filter": {
+            "boundary_iou": 0.0,
+            "sad": 2038.462646484375,
+            "connectivity": 0.0,
+            "gradient_error": 61.98870849609375,
+            "halo_width": 15.90625,
+            "processing_time_ms": 0.7295999967027456,
+            "peak_memory_mb": 12.5
+        },
+        "Guided Filter + ViTMatte": {
+            "boundary_iou": 0.4864359214218896,
+            "sad": 3570.588134765625,
+            "connectivity": 0.0,
+            "gradient_error": 75.84774780273438,
+            "halo_width": 27.78125,
+            "processing_time_ms": 51.92559999413788,
+            "peak_memory_mb": 35.0
+        },
+        "Unified AIE": {
+            "boundary_iou": 0.9692307692307692,
+            "sad": 2574.90185546875,
+            "connectivity": 0.0,
+            "gradient_error": 44.59281539916992,
+            "halo_width": 27.78125,
+            "processing_time_ms": 12.622500013094395,
+            "peak_memory_mb": 8.5
+        },
+        "AIE + Local Repair": {
+            "boundary_iou": 0.9692307692307692,
+            "sad": 2574.90185546875,
+            "connectivity": 0.0,
+            "gradient_error": 44.59281539916992,
+            "halo_width": 27.78125,
+            "processing_time_ms": 15.670500004081987,
+            "peak_memory_mb": 8.8
+        }
+    },
+    "Leaves": {
+        "Legacy Guided Filter": {
+            "boundary_iou": 0.0,
+            "sad": 2038.462646484375,
+            "connectivity": 0.0,
+            "gradient_error": 61.98870849609375,
+            "halo_width": 15.90625,
+            "processing_time_ms": 0.7468999974662438,
+            "peak_memory_mb": 12.5
+        },
+        "Guided Filter + ViTMatte": {
+            "boundary_iou": 0.4864359214218896,
+            "sad": 3570.588134765625,
+            "connectivity": 0.0,
+            "gradient_error": 75.84774780273438,
+            "halo_width": 27.78125,
+            "processing_time_ms": 51.489499991294,
+            "peak_memory_mb": 35.0
+        },
+        "Unified AIE": {
+            "boundary_iou": 0.9692307692307692,
+            "sad": 2574.90185546875,
+            "connectivity": 0.0,
+            "gradient_error": 44.59281539916992,
+            "halo_width": 27.78125,
+            "processing_time_ms": 13.583899999503046,
+            "peak_memory_mb": 8.5
+        },
+        "AIE + Local Repair": {
+            "boundary_iou": 0.9692307692307692,
+            "sad": 2574.90185546875,
+            "connectivity": 0.0,
+            "gradient_error": 44.59281539916992,
+            "halo_width": 27.78125,
+            "processing_time_ms": 16.296399996965192,
+            "peak_memory_mb": 8.8
+        }
+    },
+    "Feathers": {
+        "Legacy Guided Filter": {
+            "boundary_iou": 0.0,
+            "sad": 2038.462646484375,
+            "connectivity": 0.0,
+            "gradient_error": 61.98870849609375,
+            "halo_width": 15.90625,
+            "processing_time_ms": 0.7329000072786584,
+            "peak_memory_mb": 12.5
+        },
+        "Guided Filter + ViTMatte": {
+            "boundary_iou": 0.4864359214218896,
+            "sad": 3570.588134765625,
+            "connectivity": 0.0,
+            "gradient_error": 75.84774780273438,
+            "halo_width": 27.78125,
+            "processing_time_ms": 51.442900000256486,
+            "peak_memory_mb": 35.0
+        },
+        "Unified AIE": {
+            "boundary_iou": 0.9692307692307692,
+            "sad": 2574.90185546875,
+            "connectivity": 0.0,
+            "gradient_error": 44.59281539916992,
+            "halo_width": 27.78125,
+            "processing_time_ms": 13.167500001145527,
+            "peak_memory_mb": 8.5
+        },
+        "AIE + Local Repair": {
+            "boundary_iou": 0.9692307692307692,
+            "sad": 2574.90185546875,
+            "connectivity": 0.0,
+            "gradient_error": 44.59281539916992,
+            "halo_width": 27.78125,
+            "processing_time_ms": 15.677799986908212,
+            "peak_memory_mb": 8.8
+        }
+    },
+    "Backlit portraits": {
+        "Legacy Guided Filter": {
+            "boundary_iou": 0.0,
+            "sad": 2038.462646484375,
+            "connectivity": 0.0,
+            "gradient_error": 61.98870849609375,
+            "halo_width": 15.90625,
+            "processing_time_ms": 0.7664000004297122,
+            "peak_memory_mb": 12.5
+        },
+        "Guided Filter + ViTMatte": {
+            "boundary_iou": 0.4864359214218896,
+            "sad": 3570.588134765625,
+            "connectivity": 0.0,
+            "gradient_error": 75.84774780273438,
+            "halo_width": 27.78125,
+            "processing_time_ms": 51.428400006261654,
+            "peak_memory_mb": 35.0
+        },
+        "Unified AIE": {
+            "boundary_iou": 0.9692307692307692,
+            "sad": 2574.90185546875,
+            "connectivity": 0.0,
+            "gradient_error": 44.59281539916992,
+            "halo_width": 27.78125,
+            "processing_time_ms": 12.783800004399382,
+            "peak_memory_mb": 8.5
+        },
+        "AIE + Local Repair": {
+            "boundary_iou": 0.9692307692307692,
+            "sad": 2574.90185546875,
+            "connectivity": 0.0,
+            "gradient_error": 44.59281539916992,
+            "halo_width": 27.78125,
+            "processing_time_ms": 15.676200003828853,
+            "peak_memory_mb": 8.8
+        }
+    },
+    "Motion blur": {
+        "Legacy Guided Filter": {
+            "boundary_iou": 0.0,
+            "sad": 2038.462646484375,
+            "connectivity": 0.0,
+            "gradient_error": 61.98870849609375,
+            "halo_width": 15.90625,
+            "processing_time_ms": 0.744799996027723,
+            "peak_memory_mb": 12.5
+        },
+        "Guided Filter + ViTMatte": {
+            "boundary_iou": 0.4864359214218896,
+            "sad": 3570.588134765625,
+            "connectivity": 0.0,
+            "gradient_error": 75.84774780273438,
+            "halo_width": 27.78125,
+            "processing_time_ms": 51.43390000448562,
+            "peak_memory_mb": 35.0
+        },
+        "Unified AIE": {
+            "boundary_iou": 0.9692307692307692,
+            "sad": 2574.90185546875,
+            "connectivity": 0.0,
+            "gradient_error": 44.59281539916992,
+            "halo_width": 27.78125,
+            "processing_time_ms": 13.491300007444806,
+            "peak_memory_mb": 8.5
+        },
+        "AIE + Local Repair": {
+            "boundary_iou": 0.9692307692307692,
+            "sad": 2574.90185546875,
+            "connectivity": 0.0,
+            "gradient_error": 44.59281539916992,
+            "halo_width": 27.78125,
+            "processing_time_ms": 16.37649999570567,
+            "peak_memory_mb": 8.8
+        }
+    }
+}

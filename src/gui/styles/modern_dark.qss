@@ -1,0 +1,231 @@
+/* GhostCut Offline Professional Charcoal Dark Theme (Photoshop/Affinity Style) */
+
+QWidget {
+    background-color: #202020;
+    color: #d1d1d1;
+    font-family: 'Segoe UI', Arial, sans-serif;
+    font-size: 13px;
+}
+
+/* Toolbars */
+QToolBar {
+    background-color: #181818;
+    border: 1px solid #121212;
+    spacing: 4px;
+    padding: 3px;
+}
+
+QToolBar::separator {
+    background-color: #2c2c2c;
+    width: 1px;
+    height: 1px;
+    margin: 4px;
+}
+
+QToolButton {
+    background-color: transparent;
+    border: 1px solid transparent;
+    border-radius: 4px;
+    padding: 5px;
+    color: #b0b0b0;
+}
+
+QToolButton:hover {
+    background-color: #2d2d2d;
+    color: #ffffff;
+}
+
+QToolButton:checked {
+    background-color: #3b82f6; /* Premium flat tech blue accent */
+    color: #ffffff;
+    border: 1px solid #2563eb;
+}
+
+/* Sidebar and Canvas panels */
+QFrame#SidebarPanel {
+    background-color: #181818;
+    border-left: 1px solid #121212;
+    padding: 10px;
+}
+
+QGraphicsView {
+    background-color: #151515; /* Photoshop-like canvas backdrop */
+    border: 1px solid #1c1c1c;
+    border-radius: 4px;
+}
+
+/* Buttons */
+QPushButton {
+    background-color: #3d3d3d;
+    color: #e0e0e0;
+    border: 1px solid #4d4d4d;
+    border-radius: 4px;
+    padding: 6px 12px;
+}
+
+QPushButton:hover {
+    background-color: #4a4a4a;
+    border-color: #5a5a5a;
+}
+
+QPushButton:pressed {
+    background-color: #333333;
+}
+
+QPushButton:disabled {
+    background-color: #222222;
+    color: #666666;
+    border-color: #2a2a2a;
+}
+
+QPushButton#ExportButton {
+    background-color: #059669;
+    border: 1px solid #10b981;
+    color: #ffffff;
+    font-weight: bold;
+}
+
+QPushButton#ExportButton:hover {
+    background-color: #047857;
+    border-color: #34d399;
+}
+
+QPushButton#ExportButton:disabled {
+    background-color: #1b2e26;
+    color: #4d6e61;
+    border-color: #1f372d;
+}
+
+QPushButton#btn_run_ai {
+    background-color: #2563eb;
+    border: 1px solid #3b82f6;
+    color: #ffffff;
+    font-weight: bold;
+}
+
+QPushButton#btn_run_ai:hover {
+    background-color: #1d4ed8;
+    border-color: #60a5fa;
+}
+
+QPushButton#btn_run_ai:pressed {
+    background-color: #1e3a8a;
+}
+
+QPushButton#btn_run_ai:disabled {
+    background-color: #222222;
+    color: #666666;
+    border-color: #2a2a2a;
+}
+
+/* Sliders */
+QSlider::groove:horizontal {
+    border: 1px solid #1a1a1a;
+    height: 4px;
+    background: #1a1a1a;
+    border-radius: 2px;
+}
+
+QSlider::handle:horizontal {
+    background: #555555;
+    border: 1px solid #444444;
+    width: 12px;
+    height: 12px;
+    margin: -4px 0;
+    border-radius: 6px;
+}
+
+QSlider::handle:horizontal:hover {
+    background: #3b82f6;
+    border-color: #2563eb;
+}
+
+/* Lists and Tables */
+QListWidget {
+    background-color: #1e1e1e;
+    border: 1px solid #1a1a1a;
+    border-radius: 4px;
+    padding: 2px;
+}
+
+QListWidget::item {
+    background-color: #282828;
+    border-radius: 3px;
+    margin-bottom: 3px;
+    padding: 6px;
+    color: #cccccc;
+}
+
+QListWidget::item:hover {
+    background-color: #333333;
+}
+
+QListWidget::item:selected {
+    background-color: #3b82f6;
+    color: #ffffff;
+}
+
+/* Comboboxes */
+QComboBox {
+    background-color: #333333;
+    border: 1px solid #1a1a1a;
+    border-radius: 4px;
+    padding: 4px 10px;
+    color: #e0e0e0;
+}
+
+QComboBox:hover {
+    border-color: #3b82f6;
+}
+
+QComboBox QAbstractItemView {
+    background-color: #222222;
+    border: 1px solid #1a1a1a;
+    selection-background-color: #3b82f6;
+    color: #e0e0e0;
+}
+
+/* Labels */
+QLabel {
+    color: #aaaaaa;
+}
+
+QLabel#HeaderLabel {
+    color: #ffffff;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+/* Status Bar */
+QStatusBar {
+    background-color: #1a1a1a;
+    color: #888888;
+    border-top: 1px solid #111111;
+}
+
+/* Sleek Modern Progress Bar */
+QProgressBar {
+    background-color: #1a1a1a;
+    border: none;
+    height: 6px;
+    max-height: 6px;
+    border-radius: 3px;
+    text-align: center;
+}
+
+QProgressBar::chunk {
+    background: qlineargradient(x1:0, y1:0, x2:1, y2:0, stop:0 #3b82f6, stop:1 #10b981);
+    border-radius: 3px;
+}
+
+/* Delete Button inside Workspace queue items */
+QPushButton#btn_delete_item {
+    background-color: transparent;
+    border: none;
+    border-radius: 8px;
+    padding: 0px;
+}
+
+QPushButton#btn_delete_item:hover {
+    background-color: #ef4444;
+}

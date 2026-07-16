@@ -1,0 +1,89 @@
+{
+    "v1.0.0_baseline": {
+        "Straight hair": {
+            "Boundary Accuracy": 0.88,
+            "Hair Preservation": 0.85
+        },
+        "Curly hair": {
+            "Boundary Accuracy": 0.82,
+            "Hair Preservation": 0.8
+        },
+        "Transparent glass": {
+            "Boundary Accuracy": 0.84,
+            "Transparency Preservation": 0.81
+        }
+    },
+    "v1.0.0_perception_stable": {
+        "Straight Hair": {
+            "Boundary Accuracy": 0.96,
+            "Hair Preservation": 0.976,
+            "Edge Smoothness": 0.94
+        },
+        "Curly Hair": {
+            "Boundary Accuracy": 0.88,
+            "Hair Preservation": 0.83,
+            "Halo Suppression": 0.88
+        },
+        "Afro Hair": {
+            "Boundary Accuracy": 0.78,
+            "Hair Preservation": 0.5800000000000001,
+            "Thin Structure Preservation": 0.5666666666666667
+        },
+        "Wet Hair": {
+            "Boundary Accuracy": 0.88,
+            "Hair Preservation": 0.83,
+            "Edge Smoothness": 0.88
+        },
+        "Long Fur": {
+            "Boundary Accuracy": 0.88,
+            "Fur Preservation": 0.8111111111111111,
+            "Color Spill Suppression": 0.8583333333333334
+        },
+        "Short Fur": {
+            "Boundary Accuracy": 0.96,
+            "Fur Preservation": 0.9733333333333334,
+            "Edge Smoothness": 0.94
+        },
+        "Glass": {
+            "Boundary Accuracy": 0.78,
+            "Transparency Preservation": 0.35,
+            "Halo Suppression": 0.7
+        },
+        "Plastic": {
+            "Boundary Accuracy": 0.96,
+            "Edge Smoothness": 0.94
+        },
+        "Mesh": {
+            "Boundary Accuracy": 0.78,
+            "Thin Structure Preservation": 0.5666666666666667
+        },
+        "Lace": {
+            "Boundary Accuracy": 0.78,
+            "Thin Structure Preservation": 0.5666666666666667,
+            "Halo Suppression": 0.7
+        },
+        "Jewelry": {
+            "Boundary Accuracy": 0.88,
+            "Edge Smoothness": 0.88
+        },
+        "Leaves": {
+            "Boundary Accuracy": 0.88,
+            "Thin Structure Preservation": 0.9
+        },
+        "Feathers": {
+            "Boundary Accuracy": 0.78,
+            "Thin Structure Preservation": 0.5666666666666667,
+            "Fur Preservation": 0.5333333333333333
+        },
+        "Motion Blur": {
+            "Boundary Accuracy": 0.78,
+            "Edge Smoothness": 0.74,
+            "Halo Suppression": 0.7
+        },
+        "Backlit": {
+            "Boundary Accuracy": 0.88,
+            "Hair Preservation": 0.83,
+            "Color Spill Suppression": 0.8583333333333334
+        }
+    }
+}

@@ -1,0 +1,10 @@
+{
+  "default_model": "birefnet-general",
+  "export_format": "PNG",
+  "magic_wand_tolerance": 15,
+  "brush_size": 20,
+  "alpha_matting": true,
+  "alpha_matting_foreground_threshold": 240,
+  "alpha_matting_background_threshold": 15,
+  "alpha_matting_erode_size": 7
+}

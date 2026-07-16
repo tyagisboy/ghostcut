@@ -1,0 +1,73 @@
+{
+    "runtimes": {
+        "scene": {
+            "accuracy": 0.96,
+            "precision": 0.95,
+            "recall": 0.97
+        },
+        "subject": {
+            "accuracy": 0.94,
+            "precision": 0.92,
+            "recall": 0.95
+        },
+        "background": {
+            "accuracy": 0.93,
+            "precision": 0.91,
+            "recall": 0.94
+        },
+        "material": {
+            "accuracy": 0.91,
+            "precision": 0.89,
+            "recall": 0.92
+        },
+        "hair": {
+            "accuracy": 0.92,
+            "precision": 0.9,
+            "recall": 0.93
+        },
+        "fur": {
+            "accuracy": 0.93,
+            "precision": 0.91,
+            "recall": 0.92
+        },
+        "edge": {
+            "accuracy": 0.9,
+            "precision": 0.88,
+            "recall": 0.91
+        }
+    },
+    "scenes": {
+        "Studio Portrait": {
+            "reliability": 0.98
+        },
+        "Outdoor Portrait": {
+            "reliability": 0.91
+        },
+        "Product": {
+            "reliability": 0.95
+        },
+        "Pet": {
+            "reliability": 0.93
+        },
+        "Food": {
+            "reliability": 0.92
+        },
+        "Unknown": {
+            "reliability": 0.8
+        }
+    },
+    "strategies": {
+        "Human": {
+            "reliability": 0.97
+        },
+        "Animal": {
+            "reliability": 0.94
+        },
+        "Plant": {
+            "reliability": 0.91
+        },
+        "Product": {
+            "reliability": 0.95
+        }
+    }
+}
