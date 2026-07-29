@@ -1,4 +1,4 @@
-# Open Knowledge Format (OKF) & RAG Memory Map: GhostCut Offline (v8.5.2)
+# Open Knowledge Format (OKF) & RAG Memory Map: GhostCut Offline (v9.2.0)
 
 This specification serves as a structured, machine-readable RAG (Retrieval-Augmented Generation) memory index. It enables parallel AI agents (Antigravity, Cursor, Claude Code, ChatGPT) to instantly build a mental model of the codebase, system dependencies, constraints, and architecture.
 
@@ -8,7 +8,7 @@ This specification serves as a structured, machine-readable RAG (Retrieval-Augme
 ```json
 {
   "project_name": "GhostCut Offline",
-  "version": "8.5.2",
+  "version": "9.2.0",
   "language": "Python 3.11+",
   "gui_framework": "PyQt6",
   "inference_engines": ["ONNX Runtime (GPU/CPU)", "OpenCV DNN"],

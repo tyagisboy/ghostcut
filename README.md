@@ -1,4 +1,4 @@
-# GhostCut Offline - AI Background Remover Specification & Architecture Bible (v8.5.2)
+# GhostCut Offline - AI Background Remover Specification & Architecture Bible (v9.2.0)
 
 Welcome to the **GhostCut Offline** development repository. This document serves as the absolute specification, architecture bible, and cross-agent instruction manual for the project. It provides all necessary context for developer teams, product managers, and parallel AI assistant agents (such as Antigravity, ChatGPT, Claude Code, and Cursor) to collaborate on the codebase.
 
@@ -16,6 +16,7 @@ H:\AI Tools\Background Removal
 │   │   ├── gui/                 # PyQt6 frontend views and components
 │   │   └── models/              # ONNX runtime model files (birefnet, vitmatte)
 │   ├── build_scripts/           # PyInstaller spec and NSIS installer scripts
+│   ├── implementation_plans/    # Iterative architecture plans and result logs (v8.7 - v9.2)
 │   ├── Test images/             # Quality evaluation straight and curly hair models
 │   ├── build/                   # Temporary compilation files (ignored in git)
 │   ├── dist/                    # Compiled developer build output (ignored in git)
@@ -67,9 +68,9 @@ graph TD
 
 ---
 
-## 4. Boundary Refinement Implementations (v8.5.2)
+## 4. Boundary Refinement & Self-Tuning Implementations (v9.2.0)
 
-The latest v8.5.2 release includes critical boundary refinements to eliminate floating outlines, transparent gaps, and background speckles:
+The v9.2.0 release includes critical boundary refinements and offline self-tuning features:
 
 ### 4.1. Material-Guided Adaptive Mask Contraction
 To trim white outlines on hard borders without degrading hair fibers, `LocalRepairRuntime` applies a blended contraction:
@@ -84,6 +85,10 @@ To trim white outlines on hard borders without degrading hair fibers, `LocalRepa
 ### 4.3. Floating Background Speckles filter
 * Residual segmentation noise (small floating dust islands in the transparent background) is filtered using `cv2.connectedComponentsWithStats`.
 * Any disconnected foreground cluster with an area smaller than `0.002%` of the total image area (e.g., `< 50px`) is automatically deleted (set to `0` alpha) in `process_image` before saving.
+
+### 4.4. Interactive Export Feedback Dialog & Self-Tuning Policy Loop (v9.2.0)
+* **Feedback Dialog (`FeedbackDialog`)**: Presents a glassmorphic PyQt6 rating window post-export summarizing AI-detected scene parameters (Dominant Material %, Active Model, Quality Scorecard, Vision Flags).
+* **Defect Collector & Policy Engine (`user_feedback_runtime.py`)**: Accepts 1-5 star ratings, structured defect tags (`hair_flyaways_missing`, `clothing_edge_halo`, `studio_light_bleed`, `foreground_cut_off`, `background_noise_left`), and custom user notes to dynamically tune edge erosion and flyaway protection parameters.
 
 ---
 

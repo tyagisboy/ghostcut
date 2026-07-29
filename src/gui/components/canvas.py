@@ -44,6 +44,7 @@ class InteractiveCanvas(QGraphicsView):
         self.current_mouse_scene_pos = QPointF()
 
         self.init_canvas()
+        self.init_overlay_buttons()
 
     def init_canvas(self):
         self.setRenderHints(QPainter.RenderHint.Antialiasing | QPainter.RenderHint.SmoothPixmapTransform)
@@ -395,3 +396,93 @@ class InteractiveCanvas(QGraphicsView):
             painter.setPen(pen_dash)
             p_start = QPointF(*self.lasso_points[0])
             painter.drawLine(self.current_mouse_scene_pos, p_start)
+
+    def init_overlay_buttons(self):
+        from PyQt6.QtWidgets import QWidget, QHBoxLayout, QPushButton, QButtonGroup
+        
+        self.overlay_widget = QWidget(self)
+        overlay_layout = QHBoxLayout(self.overlay_widget)
+        overlay_layout.setContentsMargins(0, 0, 0, 0)
+        overlay_layout.setSpacing(0)
+        
+        self.btn_before = QPushButton("Before", self.overlay_widget)
+        self.btn_before.setCheckable(True)
+        self.btn_before.setFixedWidth(55)
+        self.btn_before.setStyleSheet("""
+            QPushButton {
+                border-top-left-radius: 6px;
+                border-bottom-left-radius: 6px;
+                border-top-right-radius: 0px;
+                border-bottom-right-radius: 0px;
+                border: 1px solid #3d3d3d;
+                background-color: #252525;
+                color: #b0b0b0;
+                padding: 4px 8px;
+                font-size: 11px;
+            }
+            QPushButton:hover {
+                background-color: #2d2d2d;
+                color: #ffffff;
+            }
+            QPushButton:checked {
+                background-color: #3b82f6;
+                color: #ffffff;
+                border: 1px solid #2563eb;
+            }
+        """)
+        
+        self.btn_after = QPushButton("After", self.overlay_widget)
+        self.btn_after.setCheckable(True)
+        self.btn_after.setChecked(True)
+        self.btn_after.setFixedWidth(55)
+        self.btn_after.setStyleSheet("""
+            QPushButton {
+                border-top-right-radius: 6px;
+                border-bottom-right-radius: 6px;
+                border-top-left-radius: 0px;
+                border-bottom-left-radius: 0px;
+                border: 1px solid #3d3d3d;
+                border-left: none;
+                background-color: #252525;
+                color: #b0b0b0;
+                padding: 4px 8px;
+                font-size: 11px;
+            }
+            QPushButton:hover {
+                background-color: #2d2d2d;
+                color: #ffffff;
+            }
+            QPushButton:checked {
+                background-color: #3b82f6;
+                color: #ffffff;
+                border: 1px solid #2563eb;
+            }
+        """)
+        
+        self.compare_group = QButtonGroup(self)
+        self.compare_group.addButton(self.btn_before)
+        self.compare_group.addButton(self.btn_after)
+        self.compare_group.setExclusive(True)
+        
+        overlay_layout.addWidget(self.btn_before)
+        overlay_layout.addWidget(self.btn_after)
+        
+        self.btn_before.toggled.connect(self.on_compare_toggled)
+        self.overlay_widget.adjustSize()
+        
+    def on_compare_toggled(self, checked):
+        self.show_original = checked
+        self.update_composite_view()
+        
+    def resizeEvent(self, event):
+        super().resizeEvent(event)
+        if hasattr(self, 'overlay_widget') and self.overlay_widget:
+            self.overlay_widget.adjustSize()
+            w_w = self.overlay_widget.width()
+            
+            # Avoid scrollbar overlap by subtracting its width if visible
+            v_bar_w = 0
+            if self.verticalScrollBar() and self.verticalScrollBar().isVisible():
+                v_bar_w = self.verticalScrollBar().width()
+                
+            self.overlay_widget.move(self.width() - w_w - 15 - v_bar_w, 15)

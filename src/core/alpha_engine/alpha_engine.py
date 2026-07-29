@@ -32,33 +32,69 @@ class AlphaEngine:
         """
         img = context.img_bgr
         mask = context.mask
-        h, w = mask.shape[:2]
         
         # 1. Match active regions inside perception state
-        regions = context.perception_graph.get("regions", ["skin", "hair"])
-        primary_region = regions[0] if regions else "skin"
-        
-        # 2. Resolve boundary zones
-        trimap = self.boundary_solver.solve_boundary(img, mask, primary_region)
-        
-        # 3. Apply policies to build composite refined alpha
+        p_graph = getattr(context, "perception_graph", {})
+        if isinstance(p_graph, dict):
+            regions = p_graph.get("regions", ["skin", "hair"])
+        else:
+            regions = ["skin", "hair"]
+        primary_region = regions[0] if (isinstance(regions, list) and len(regions) > 0) else "skin"
         policy = self.policy_manager.get_policy(primary_region.capitalize())
         
-        # Simulating matting compilation math using boundary solver and texture details
-        # For transition zone (128), we apply a local soft guide blend
-        refined_alpha = mask.copy()
-        transition_mask = (trimap == 128)
+        # Execute ViTMatte transformer refinement if available and processing mode demands high detail
+        has_run_vitmatte = False
+        if hasattr(self, "vitmatte_func") and self.vitmatte_func is not None:
+            processing_mode = getattr(context, "processing_mode", "fast")
+            material_maps = getattr(context, "material_maps", None)
+            hair_prob = material_maps[:, :, 1] if material_maps is not None else None
+            has_hair_detail = np.any(hair_prob > 0.15) if hair_prob is not None else True
+            
+            if processing_mode in ["quality", "ultra"] or has_hair_detail:
+                try:
+                    w_detail = getattr(context, "w_detail", None)
+                    vit_mask = self.vitmatte_func(img, mask, w_detail)
+                    if vit_mask is not None:
+                        refined_alpha = vit_mask
+                        has_run_vitmatte = True
+                except Exception as vm_err:
+                    print(f"[-] ViTMatte execution error inside AlphaEngine: {vm_err}")
         
-        if np.any(transition_mask):
-            gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
-            # Normalize gray values in transition zone
-            guide_vals = gray[transition_mask].astype(np.float32) / 255.0
-            
-            # Smoothness policy scaling
-            smooth_coeff = policy.get("smoothness", 0.5)
-            blend = smooth_coeff * guide_vals + (1.0 - smooth_coeff) * 0.5
-            
-            refined_alpha[transition_mask] = (blend * 255.0).astype(np.uint8)
+        if not has_run_vitmatte:
+            if hasattr(self, "matting_func") and self.matting_func is not None:
+                # Extract dynamically routed parameters from context with safe fallbacks
+                fg_thresh = getattr(context, "fg_thresh", 240)
+                bg_thresh = getattr(context, "bg_thresh", 40)
+                erode_size = getattr(context, "erode_size", 3)
+                preserve_transparency = getattr(context, "preserve_transparency", False)
+                sharpness = getattr(context, "sharpness", 0)
+                focus_thresh = getattr(context, "focus_thresh", 0.0)
+                w_detail = getattr(context, "w_detail", None)
+                disable_quality_loop = getattr(context, "disable_quality_loop", False)
+                radius_field = getattr(context, "radius_field", None)
+                material_maps = getattr(context, "material_maps", None)
+                
+                refined_alpha = self.matting_func(
+                    img, mask, fg_thresh, bg_thresh, erode_size,
+                    preserve_transparency, sharpness, focus_thresh,
+                    w_detail, disable_quality_loop, radius_field, material_maps
+                )
+            else:
+                # Fallback simulator path for mock execution compatibility / AIE integration tests
+                trimap = self.boundary_solver.solve_boundary(img, mask, primary_region)
+                refined_alpha = mask.copy()
+                transition_mask = (trimap == 128)
+                
+                if np.any(transition_mask):
+                    gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+                    # Normalize gray values in transition zone
+                    guide_vals = gray[transition_mask].astype(np.float32) / 255.0
+                    
+                    # Smoothness policy scaling
+                    smooth_coeff = policy.get("smoothness", 0.5)
+                    blend = smooth_coeff * guide_vals + (1.0 - smooth_coeff) * 0.5
+                    
+                    refined_alpha[transition_mask] = (blend * 255.0).astype(np.uint8)
             
         # 4. Generate region alpha maps and confidence mapping
         region_alphas = {primary_region: refined_alpha.copy()}

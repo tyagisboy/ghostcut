@@ -133,7 +133,7 @@ def apply_brush_draw(current_mask, center, radius, action="ADD"):
     cv2.circle(new_mask, (cx, cy), int(radius), val, -1)
     return new_mask
 
-def color_guided_filter(img, p, radius, eps=1e-3):
+def color_guided_filter(img, p, radius, eps=1e-5):
     """
     Fast O(1) 3-channel Color Guided Filter using OpenCV boxFilter.
     img: BGR guide image (normalized to float32 [0, 1])
@@ -240,7 +240,7 @@ def apply_refine_edge_brush(img, current_mask, stroke_mask, brush_size):
     stroke_crop = stroke_mask[y1:y2, x1:x2]
     
     # Perform 3-channel Color Guided Filter locally in LAB space
-    q = color_guided_filter(img_crop, mask_crop, radius, eps=1e-3)
+    q = color_guided_filter(img_crop, mask_crop, radius, eps=1e-5)
     q = np.clip(q * 255.0, 0, 255).astype(np.uint8)
     
     # Update mask crop only inside the brushed region

@@ -7,7 +7,7 @@ sys.path.append(os.path.abspath(os.path.dirname(__file__)))
 from src.core.segmentation import SegmentationEngine
 
 def test_image(img_name):
-    workspace = "H:/AI Tools/Background Removal"
+    workspace = "H:/AI Tools/Background Removal/Ai Project"
     img_path = os.path.join(workspace, "Test images", img_name)
     if not os.path.exists(img_path):
         print(f"[-] Image not found: {img_path}")

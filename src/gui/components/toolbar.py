@@ -124,7 +124,6 @@ class ParametersBar(QToolBar):
     model_changed = pyqtSignal(str)
     undo_triggered = pyqtSignal()
     redo_triggered = pyqtSignal()
-    compare_triggered = pyqtSignal(bool)
     matting_settings_changed = pyqtSignal(bool, int, bool, int, bool, str)
     smooth_edges_triggered = pyqtSignal()
 
@@ -335,6 +334,7 @@ class ParametersBar(QToolBar):
 
         # 4. Wand & Brush Sliders (options layout)
         self.tol_label = QLabel("Wand Tol: 15")
+        self.tol_label.setFixedWidth(85)
         self.tol_slider = QSlider(Qt.Orientation.Horizontal)
         self.tol_slider.setRange(1, 100)
         self.tol_slider.setValue(15)
@@ -344,6 +344,7 @@ class ParametersBar(QToolBar):
         row1_layout.addWidget(self.tol_slider)
 
         self.brush_label = QLabel("Brush Size: 20px")
+        self.brush_label.setFixedWidth(95)
         self.brush_slider = QSlider(Qt.Orientation.Horizontal)
         self.brush_slider.setRange(1, 150)
         self.brush_slider.setValue(20)
@@ -351,81 +352,6 @@ class ParametersBar(QToolBar):
         self.brush_slider.valueChanged.connect(self.on_brush_changed)
         row1_layout.addWidget(self.brush_label)
         row1_layout.addWidget(self.brush_slider)
-
-        row1_layout.addWidget(self.create_divider())
-
-        # 5. View Control: [ Before | After ] (on Row 1, right-aligned)
-        view_lbl = QLabel(" View: ")
-        row1_layout.addWidget(view_lbl)
-
-        compare_widget = QWidget()
-        compare_layout = QHBoxLayout(compare_widget)
-        compare_layout.setContentsMargins(0, 0, 0, 0)
-        compare_layout.setSpacing(0)
-
-        self.btn_before = QPushButton("Before")
-        self.btn_before.setCheckable(True)
-        self.btn_before.setFixedWidth(55)
-        self.btn_before.setStyleSheet("""
-            QPushButton {
-                border-top-left-radius: 6px;
-                border-bottom-left-radius: 6px;
-                border-top-right-radius: 0px;
-                border-bottom-right-radius: 0px;
-                border: 1px solid #3d3d3d;
-                background-color: #252525;
-                color: #b0b0b0;
-                padding: 4px 8px;
-                font-size: 11px;
-            }
-            QPushButton:hover {
-                background-color: #2d2d2d;
-                color: #ffffff;
-            }
-            QPushButton:checked {
-                background-color: #3b82f6;
-                color: #ffffff;
-                border: 1px solid #2563eb;
-            }
-        """)
-
-        self.btn_after = QPushButton("After")
-        self.btn_after.setCheckable(True)
-        self.btn_after.setChecked(True)
-        self.btn_after.setFixedWidth(55)
-        self.btn_after.setStyleSheet("""
-            QPushButton {
-                border-top-right-radius: 6px;
-                border-bottom-right-radius: 6px;
-                border-top-left-radius: 0px;
-                border-bottom-left-radius: 0px;
-                border: 1px solid #3d3d3d;
-                border-left: none;
-                background-color: #252525;
-                color: #b0b0b0;
-                padding: 4px 8px;
-                font-size: 11px;
-            }
-            QPushButton:hover {
-                background-color: #2d2d2d;
-                color: #ffffff;
-            }
-            QPushButton:checked {
-                background-color: #3b82f6;
-                color: #ffffff;
-                border: 1px solid #2563eb;
-            }
-        """)
-
-        self.compare_group = QButtonGroup(self)
-        self.compare_group.addButton(self.btn_before)
-        self.compare_group.addButton(self.btn_after)
-        self.compare_group.setExclusive(True)
-
-        compare_layout.addWidget(self.btn_before)
-        compare_layout.addWidget(self.btn_after)
-        row1_layout.addWidget(compare_widget)
-        self.btn_before.toggled.connect(self.compare_triggered.emit)
 
         # Row 1 Spacer to push everything left
         row1_spacer = QWidget()
@@ -442,6 +368,7 @@ class ParametersBar(QToolBar):
 
         # 2. Radius Slider
         self.erode_label = QLabel("  Radius: 7px")
+        self.erode_label.setFixedWidth(135)
         self.erode_slider = QSlider(Qt.Orientation.Horizontal)
         self.erode_slider.setRange(1, 25)
         self.erode_slider.setValue(7)
@@ -466,6 +393,7 @@ class ParametersBar(QToolBar):
 
         # 5. Sharpness Slider
         self.sharp_label = QLabel("  Sharpness: 0")
+        self.sharp_label.setFixedWidth(145)
         self.sharp_slider = QSlider(Qt.Orientation.Horizontal)
         self.sharp_slider.setRange(0, 10)
         self.sharp_slider.setValue(0)
@@ -658,8 +586,6 @@ class ParametersBar(QToolBar):
         self.last_applied_state["preserve_trans"] = self.chk_transparency.isChecked()
         self.last_applied_state["sharpness"] = self.sharp_slider.value()
         self.last_applied_state["decontaminate"] = self.chk_decontaminate.isChecked()
-        
-        self.model_changed.emit(self.last_applied_state["model"])
         
         self.matting_settings_changed.emit(
             self.last_applied_state["apply_matting"],

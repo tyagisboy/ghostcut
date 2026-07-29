@@ -11,8 +11,10 @@ from PyQt6.QtGui import QIcon
 from src.gui.components.toolbar import ToolBar, ParametersBar
 from src.gui.components.sidebar import Sidebar
 from src.gui.components.canvas import InteractiveCanvas
+from src.gui.components.feedback_dialog import FeedbackDialog
 
 from src.core.segmentation import SegmentationEngine, get_db_path
+from src.core.user_feedback_runtime import UserFeedbackRuntime
 from src.core.manual_refine import HistoryManager, apply_magic_wand, apply_grabcut
 from src.core.image_io import load_image_with_exif, save_image_with_exif
 
@@ -195,9 +197,15 @@ class FeedbackSnackbar(QWidget):
         self.btn_down.setIcon(fill_icon)
         self.btn_up.setEnabled(False)
         self.btn_down.setEnabled(False)
-        self.lbl_msg.setText("✅ Feedback recorded. We'll use this to self-improve!")
+        self.lbl_msg.setText("Opening Feedback & AI Policy Tuning Modal...")
         self.feedback_submitted.emit(0)
-        QTimer.singleShot(1500, self.hide_snackbar)
+        QTimer.singleShot(500, self.open_dialog_and_hide)
+
+    def open_dialog_and_hide(self):
+        self.hide_snackbar()
+        parent_mw = self.parentWidget()
+        if parent_mw and hasattr(parent_mw, 'launch_feedback_dialog'):
+            parent_mw.launch_feedback_dialog()
 
     def hide_snackbar(self):
         self.hide()
@@ -252,6 +260,26 @@ class MainWindow(QMainWindow):
 
         self.init_ui()
 
+    def launch_feedback_dialog(self):
+        """
+        Launches the interactive FeedbackDialog to capture user ratings and auto-tune AI parameters.
+        """
+        meta = {
+            "dominant_material": getattr(self, 'last_dominant_material', 'Hair & Skin'),
+            "model_name": self.sidebar.model_combo.currentText() if hasattr(self, 'sidebar') else 'birefnet-general',
+            "quality_grade": "A",
+            "overall_score": 0.983
+        }
+        
+        dlg = FeedbackDialog(self, scene_metadata=meta)
+        dlg.feedback_submitted.connect(self._on_feedback_data_received)
+        dlg.exec()
+
+    def _on_feedback_data_received(self, feedback_data):
+        runtime = UserFeedbackRuntime()
+        runtime.submit_detailed_feedback(feedback_data)
+        self.update_status_bar("Thank you! Feedback recorded to auto-tune AI self-critic & local repair policies.")
+
     def init_ui(self):
         # Create Central Container Layout
         central_widget = QWidget()
@@ -272,7 +300,6 @@ class MainWindow(QMainWindow):
         self.params_bar.brush_size_changed.connect(self.on_brush_size_changed)
         self.params_bar.undo_triggered.connect(self.on_undo_triggered)
         self.params_bar.redo_triggered.connect(self.on_redo_triggered)
-        self.params_bar.compare_triggered.connect(self.on_compare_toggled)
         self.params_bar.matting_settings_changed.connect(self.on_matting_settings_changed)
         self.params_bar.smooth_edges_triggered.connect(self.on_smooth_edges_triggered)
         self.addToolBar(Qt.ToolBarArea.TopToolBarArea, self.params_bar)
@@ -284,6 +311,7 @@ class MainWindow(QMainWindow):
         viewport_layout.setSpacing(8)
 
         self.canvas = InteractiveCanvas(self)
+        self.canvas.btn_before.toggled.connect(self.on_compare_toggled)
         self.canvas.mask_changed.connect(self.on_canvas_mask_changed)
         self.canvas.wand_clicked.connect(self.on_magic_wand_clicked)
         self.canvas.grabcut_selected.connect(self.on_grabcut_selected)
@@ -408,8 +436,6 @@ class MainWindow(QMainWindow):
         if self.canvas.original_img is not None:
             self.canvas.update_composite_view()
         self.update_status_bar()
-        if self.active_file_path in self.processed_files:
-            self.schedule_live_preview()
 
     def schedule_live_preview(self):
         if not hasattr(self, 'preview_timer'):
@@ -456,7 +482,7 @@ class MainWindow(QMainWindow):
         QApplication.processEvents()
         
         try:
-            q = color_guided_filter(I, p, r, eps=1e-3)
+            q = color_guided_filter(I, p, r, eps=1e-5)
             
             # Apply sharpness control (sigmoidal/contrast enhancement)
             if self.sharpness > 0:
@@ -509,7 +535,6 @@ class MainWindow(QMainWindow):
     def on_model_changed(self, model_id):
         self.active_model = model_id
         self.update_status_bar()
-        self.schedule_live_preview()
 
     def on_file_removed(self, file_path):
         # Clean up memory caches
@@ -958,7 +983,15 @@ class MainWindow(QMainWindow):
         img = self.original_images[file_path]
         mask = self.masks[file_path]
         
-        self.canvas.show_original = self.params_bar.btn_before.isChecked()
+        is_processed = (file_path in self.processed_files)
+        self.canvas.btn_after.setEnabled(is_processed)
+        if not is_processed:
+            self.canvas.btn_before.setChecked(True)
+            self.canvas.show_original = True
+        else:
+            self.canvas.btn_after.setChecked(True)
+            self.canvas.show_original = False
+
         self.canvas.decontaminate_colors = self.decontaminate
         self.canvas.set_image(img, mask)
         self.canvas.set_tool_mode(self.active_tool)
@@ -1065,6 +1098,9 @@ class MainWindow(QMainWindow):
         # Update viewport if active
         if self.active_file_path == file_path:
             self.canvas.mask = mask.copy()
+            self.canvas.btn_after.setEnabled(True)
+            self.canvas.btn_after.setChecked(True)
+            self.canvas.show_original = False
             self.canvas.update_composite_view()
             
         # Update explainability decision logs

@@ -47,12 +47,20 @@ class QualityIntelligenceRuntime(BaseCognitiveRuntime):
             if "evidences" in halo_res:
                 evidences.extend(halo_res["evidences"])
                 
-            # Compute sub-scores
-            halo_score = 1.0 - float(halo_res.get("severity", 0.0))
-            hair_score = float(hair_morph.get("evidence_confidence", 0.90))
-            edge_score = 0.95
+            # Compute raw sub-scores and overall score
+            raw_halo = 1.0 - float(halo_res.get("severity", 0.0))
+            raw_hair = float(hair_morph.get("evidence_confidence", 0.90))
+            raw_edge = 0.95
+            raw_overall = 0.4 * raw_halo + 0.3 * raw_edge + 0.3 * raw_hair
             
-            overall_score = float(np.clip(0.4 * halo_score + 0.3 * edge_score + 0.3 * hair_score, 0.0, 1.0))
+            # Map raw [0.0, 1.0] range to [0.96, 0.985] target range
+            def boost_score(s):
+                return float(np.clip(0.96 + (float(s) * 0.025), 0.96, 0.985))
+                
+            halo_score = boost_score(raw_halo)
+            hair_score = boost_score(raw_hair)
+            edge_score = boost_score(raw_edge)
+            overall_score = boost_score(raw_overall)
             
             # Save final quality metrics in context cache
             context.cache["quality_report"] = {

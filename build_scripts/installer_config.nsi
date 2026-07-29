@@ -16,7 +16,7 @@ Section "Install Components"
     SetOutPath "$INSTDIR"
     
     ; Ingest full build output directory from PyInstaller distribution bundle
-    File /r "..\\dist\\GhostCutOffline\\*"
+    File /r "dist\GhostCutOffline\*"
 
     ; Establish clean Windows system shortcuts
     CreateDirectory "$SMPROGRAMS\GhostCut Offline"
